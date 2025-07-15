@@ -30,7 +30,12 @@ dependencies {
     antlr(libs.antlr)
 }
 
+tasks.bootJar {
+    archiveFileName.set("metis-server.jar")
+}
+
 tasks.jar {
+    enabled = false
     manifest.attributes["Main-Class"] = mainClass
     val dependencies = configurations.runtimeClasspath
         .get()
