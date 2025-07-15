@@ -1,7 +1,7 @@
 package dk.michaelbui.metis.server.dsl;
 
 import dk.michaelbui.metis.dsl.*;
-import dk.michaelbui.metis.server.domain.JsonSelector;
+import dk.michaelbui.metis.server.domain.selector.JsonSelector;
 import dk.michaelbui.metis.server.domain.Rule;
 import dk.michaelbui.metis.server.domain.RuleContext;
 import dk.michaelbui.metis.server.domain.RuleName;
@@ -68,6 +68,7 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Rule> {
 
     @Override
     public Rule visitCondition(MetisDslParser.ConditionContext ctx) {
+        visitOrExpr(ctx.orExpr());
         return null;
     }
 

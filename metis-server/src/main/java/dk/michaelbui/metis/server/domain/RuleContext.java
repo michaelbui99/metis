@@ -1,5 +1,7 @@
 package dk.michaelbui.metis.server.domain;
 
+import dk.michaelbui.metis.server.domain.selector.JsonSelector;
+
 import java.util.HashMap;
 import java.util.Map;
 

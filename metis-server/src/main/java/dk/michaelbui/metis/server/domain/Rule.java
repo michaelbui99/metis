@@ -1,5 +1,7 @@
 package dk.michaelbui.metis.server.domain;
 
+import dk.michaelbui.metis.server.domain.event.EventTemplate;
+
 import java.util.List;
 
 public class Rule {
@@ -17,9 +19,6 @@ public class Rule {
 
     private RuleContext context;
 
-
-    public Rule() {
-    }
 
     public RuleName getName() {
         return name;
