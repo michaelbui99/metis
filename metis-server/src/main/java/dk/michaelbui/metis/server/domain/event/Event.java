@@ -1,5 +1,6 @@
 package dk.michaelbui.metis.server.domain.event;
 
+import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.UUID;
 
@@ -7,6 +8,7 @@ public class Event {
     private final UUID id;
     private final String name;
     private Map<String, Object> params;
+    private OffsetDateTime timestamp;
 
     public Event(UUID id, String name, Map<String, Object> params) {
         this.id = id;
@@ -29,5 +31,17 @@ public class Event {
 
     public Map<String, Object> getParams() {
         return params;
+    }
+
+    public void setParams(Map<String, Object> params) {
+        this.params = params;
+    }
+
+    public OffsetDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(OffsetDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 }

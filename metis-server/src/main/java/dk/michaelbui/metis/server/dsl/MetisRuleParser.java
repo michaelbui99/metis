@@ -22,7 +22,7 @@ public class MetisRuleParser {
         MetisDslParser parser = new MetisDslParser(tokens);
         try {
             ParseTree tree = parser.metisRule();
-            return visitor.visit(tree);
+            return (Rule) visitor.visit(tree);
         } catch (RecognitionException e) {
             throw new ParseException("Failed to parse DSL: " + e.getMessage(), e);
         }

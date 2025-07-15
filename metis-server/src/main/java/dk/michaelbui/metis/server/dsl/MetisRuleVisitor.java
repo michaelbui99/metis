@@ -1,6 +1,7 @@
 package dk.michaelbui.metis.server.dsl;
 
 import dk.michaelbui.metis.dsl.*;
+import dk.michaelbui.metis.server.domain.event.EventTemplate;
 import dk.michaelbui.metis.server.domain.selector.JsonSelector;
 import dk.michaelbui.metis.server.domain.Rule;
 import dk.michaelbui.metis.server.domain.RuleContext;
@@ -12,7 +13,7 @@ import org.slf4j.LoggerFactory;
 /***
  * Responsible for converting Metis DSL to a {@link Rule}
  * */
-public class MetisRuleVisitor extends MetisDslBaseVisitor<Rule> {
+public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
     private static final Logger LOGGER = LoggerFactory.getLogger(MetisRuleVisitor.class);
     private Rule rule;
 
@@ -67,31 +68,38 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Rule> {
     }
 
     @Override
-    public Rule visitCondition(MetisDslParser.ConditionContext ctx) {
+    public Object visitCondition(MetisDslParser.ConditionContext ctx) {
         visitOrExpr(ctx.orExpr());
         return null;
     }
 
     @Override
-    public Rule visitOrExpr(MetisDslParser.OrExprContext ctx) {
+    public Object visitOrExpr(MetisDslParser.OrExprContext ctx) {
         LOGGER.info("Visiting OR expression");
+
+        if (ctx.andExpr().size() == 1){
+            visitAndExpr(ctx.andExpr(0));
+            return null;
+        }
+
+
         return null;
     }
 
     @Override
-    public Rule visitAndExpr(MetisDslParser.AndExprContext ctx) {
+    public Object visitAndExpr(MetisDslParser.AndExprContext ctx) {
         LOGGER.info("Visiting AND expression");
         return null;
     }
 
     @Override
-    public Rule visitNotExpr(MetisDslParser.NotExprContext ctx) {
+    public Object visitNotExpr(MetisDslParser.NotExprContext ctx) {
         LOGGER.info("Visiting NOT expression");
         return null;
     }
 
     @Override
-    public Rule visitAction(MetisDslParser.ActionContext ctx) {
+    public EventTemplate visitAction(MetisDslParser.ActionContext ctx) {
         LOGGER.info("Visiting action");
         return null;
     }

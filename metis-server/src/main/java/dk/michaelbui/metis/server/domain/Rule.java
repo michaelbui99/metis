@@ -1,5 +1,6 @@
 package dk.michaelbui.metis.server.domain;
 
+import dk.michaelbui.metis.server.domain.condition.Condition;
 import dk.michaelbui.metis.server.domain.event.EventTemplate;
 
 import java.util.List;

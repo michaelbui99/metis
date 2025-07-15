@@ -10,7 +10,7 @@ import org.junit.jupiter.api.function.Executable;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JsonSelectorTest {
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     void invalidSelectorWhenNotStartingWithRootSymbol(){

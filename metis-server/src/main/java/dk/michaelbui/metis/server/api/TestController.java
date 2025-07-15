@@ -26,7 +26,7 @@ public class TestController {
         ParseTree tree = parser.metisRule();
 
         MetisRuleVisitor visitor = new MetisRuleVisitor();
-        Rule rule = visitor.visit(tree);
+        Rule rule = (Rule)visitor.visit(tree);
         return new ReadRuleDto(UUID.randomUUID().toString(), rule.getName().value());
     }
 }
