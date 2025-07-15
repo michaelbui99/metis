@@ -52,6 +52,7 @@ notExpr
 primaryCondition
     : '(' condition ')'     # ParenthesizedCondition
     | binaryExpression      # BinaryComparison
+    | expression            # ExpressionCondition
     ;
 
 binaryExpression
@@ -130,11 +131,8 @@ AND       : 'AND';
 OR        : 'OR';
 NOT       : '!';
 
-TRUE      : 'true';
-FALSE     : 'false';
-
 BOOLEAN_LITERAL
-    : TRUE | FALSE
+    : 'true' | 'false'
     ;
 
 NUMBER_LITERAL
