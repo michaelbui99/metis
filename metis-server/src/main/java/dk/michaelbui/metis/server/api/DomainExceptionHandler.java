@@ -1,6 +1,6 @@
 package dk.michaelbui.metis.server.api;
 
-import dk.michaelbui.metis.server.domain.DomainException;
+import dk.michaelbui.metis.core.domain.DomainException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

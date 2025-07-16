@@ -1,7 +1,7 @@
 package dk.michaelbui.metis.server.data;
 
-import dk.michaelbui.metis.server.domain.rule.Rule;
-import dk.michaelbui.metis.server.domain.rule.RulesRepository;
+import dk.michaelbui.metis.core.domain.rule.Rule;
+import dk.michaelbui.metis.core.domain.rule.RulesRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

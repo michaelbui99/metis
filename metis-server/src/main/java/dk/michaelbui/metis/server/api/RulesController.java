@@ -1,9 +1,9 @@
 package dk.michaelbui.metis.server.api;
 
 import dk.michaelbui.metis.server.api.dto.ReadRuleDto;
-import dk.michaelbui.metis.server.domain.dsl.MetisRuleParser;
-import dk.michaelbui.metis.server.domain.rule.Rule;
-import dk.michaelbui.metis.server.domain.rule.RulesService;
+import dk.michaelbui.metis.core.dsl.MetisRuleParser;
+import dk.michaelbui.metis.core.domain.rule.Rule;
+import dk.michaelbui.metis.core.domain.rule.RulesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

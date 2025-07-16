@@ -7,3 +7,4 @@
 
 rootProject.name = "metis"
 include("metis-server")
+include("metis-core")

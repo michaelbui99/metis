@@ -1,7 +1,7 @@
 package dk.michaelbui.metis.server.api;
 
-import dk.michaelbui.metis.server.domain.Engine;
-import dk.michaelbui.metis.server.domain.event.Event;
+import dk.michaelbui.metis.core.domain.Engine;
+import dk.michaelbui.metis.core.domain.event.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

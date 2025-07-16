@@ -4,9 +4,12 @@
 jackson = "2.17.2"
 antlr = "4.5"
 springdoc = "2.8.5"
+spring-logging="3.5.3"
 
 [libraries]
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 antlr = { module = "org.antlr:antlr4", version.ref = "antlr" }
 springdoc = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
+spring-logging = {module = "org.springframework.boot:spring-boot-starter-logging", version.ref="spring-logging"}
+
 

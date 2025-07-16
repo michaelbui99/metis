@@ -2,7 +2,6 @@ plugins {
     java
     id("org.springframework.boot") version "3.5.3"
     id("io.spring.dependency-management") version "1.1.7"
-    antlr
 }
 
 group = "dk.michaelbui"
@@ -20,14 +19,13 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":metis-core"))
+
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation(libs.jackson.databind)
     implementation(libs.springdoc)
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    antlr(libs.antlr)
 }
 
 tasks.bootJar {
@@ -46,13 +44,5 @@ tasks.jar {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-tasks.named("build"){
-    dependsOn("generateGrammarSource")
-}
-
-tasks.generateGrammarSource {
-    arguments = arguments + listOf("-visitor", "-long-messages")
 }
 
