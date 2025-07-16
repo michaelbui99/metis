@@ -19,4 +19,11 @@ public class RuleContext {
     public Map<String, JsonSelector> getBindings() {
         return bindings;
     }
+
+    @Override
+    public String toString() {
+        return "RuleContext{" +
+                "bindings=" + bindings +
+                '}';
+    }
 }

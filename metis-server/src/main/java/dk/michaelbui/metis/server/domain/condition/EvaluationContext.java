@@ -16,4 +16,11 @@ public class EvaluationContext {
     public void setInput(JsonNode input) {
         this.input = input;
     }
+
+    @Override
+    public String toString() {
+        return "EvaluationContext{" +
+                "input=" + input.toPrettyString() +
+                '}';
+    }
 }

@@ -1,6 +1,8 @@
-package dk.michaelbui.metis.server.dsl;
+package dk.michaelbui.metis.server.domain.dsl;
 
-public class ParseException extends RuntimeException {
+import dk.michaelbui.metis.server.domain.DomainException;
+
+public class ParseException extends DomainException {
     public ParseException() {
     }
 

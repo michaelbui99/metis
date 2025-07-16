@@ -1,4 +1,4 @@
-package dk.michaelbui.metis.server.dsl;
+package dk.michaelbui.metis.server.domain.dsl;
 
 import dk.michaelbui.metis.dsl.MetisDslLexer;
 import dk.michaelbui.metis.dsl.MetisDslParser;

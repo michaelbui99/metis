@@ -19,4 +19,12 @@ public class OrCondition extends Condition {
         this.left.setContext(context);
         this.right.setContext(context);
     }
+
+    @Override
+    public String toString() {
+        return "OrCondition{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
+    }
 }

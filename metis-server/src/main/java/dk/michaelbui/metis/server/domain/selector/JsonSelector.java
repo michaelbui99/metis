@@ -114,4 +114,11 @@ public class JsonSelector {
             return Optional.empty();
         }
     }
+
+    @Override
+    public String toString() {
+        return "JsonSelector{" +
+                "selector='" + selector + '\'' +
+                '}';
+    }
 }

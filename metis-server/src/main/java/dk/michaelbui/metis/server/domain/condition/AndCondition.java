@@ -1,8 +1,8 @@
 package dk.michaelbui.metis.server.domain.condition;
 
 public class AndCondition extends Condition {
-    private Condition left;
-    private Condition right;
+    private final Condition left;
+    private final Condition right;
 
     public AndCondition(Condition left, Condition right) {
         this.left = left;
@@ -18,5 +18,13 @@ public class AndCondition extends Condition {
     public void setContext(EvaluationContext context) {
         this.left.setContext(context);
         this.right.setContext(context);
+    }
+
+    @Override
+    public String toString() {
+        return "AndCondition{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
     }
 }

@@ -3,18 +3,13 @@ package dk.michaelbui.metis.server.domain;
 import dk.michaelbui.metis.server.domain.condition.Condition;
 import dk.michaelbui.metis.server.domain.event.EventTemplate;
 
-import java.util.List;
-
 public class Rule {
     /**
      * Name of the rule. The name uniquely identifies a Rule in the system.
      * */
     private RuleName name;
 
-    /**
-     * Conditions that must be evaluated to true before {@code event} is raised
-     * */
-    private List<Condition> conditions;
+    private Condition condition;
 
     private EventTemplate event;
 
@@ -23,10 +18,6 @@ public class Rule {
 
     public RuleName getName() {
         return name;
-    }
-
-    public List<Condition> getConditions() {
-        return conditions;
     }
 
     public EventTemplate getEvent() {
@@ -41,15 +32,29 @@ public class Rule {
         this.name = name;
     }
 
-    public void setConditions(List<Condition> conditions) {
-        this.conditions = conditions;
-    }
-
     public RuleContext getContext() {
         return context;
     }
 
     public void setContext(RuleContext context) {
         this.context = context;
+    }
+
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
+    }
+
+    @Override
+    public String toString() {
+        return "Rule{" +
+                "name=" + name +
+                ", condition=" + condition +
+                ", event=" + event +
+                ", context=" + context +
+                '}';
     }
 }
