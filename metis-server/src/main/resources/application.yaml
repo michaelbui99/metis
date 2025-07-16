@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: "metis-server"
+
+metis:
+  plugin:
+    dir: ${METIS_PLUGIN_DIR:/opt/metis/plugins}
+    config:
+      file: ${METIS_PLUGIN_CONFIG_FILE:/opt/metis/plugins/plugins_config.yaml}
+

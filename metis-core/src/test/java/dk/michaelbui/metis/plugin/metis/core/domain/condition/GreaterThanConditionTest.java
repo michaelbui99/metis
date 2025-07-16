@@ -1,7 +1,9 @@
-package dk.michaelbui.metis.core.domain.condition;
+package dk.michaelbui.metis.plugin.metis.core.domain.condition;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dk.michaelbui.metis.core.domain.condition.EvaluationContext;
+import dk.michaelbui.metis.core.domain.condition.GreaterThanCondition;
 import dk.michaelbui.metis.core.domain.selector.JsonSelector;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

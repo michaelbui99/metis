@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class Event {
-    private final UUID id;
-    private final String name;
+    private UUID id;
+    private String name;
     private Map<String, Object> params;
     private OffsetDateTime timestamp;
 
@@ -14,6 +14,9 @@ public class Event {
         this.id = id;
         this.name = name;
         this.params = params;
+    }
+
+    public Event() {
     }
 
     public Event param(String key, Object value) {
@@ -43,5 +46,13 @@ public class Event {
 
     public void setTimestamp(OffsetDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

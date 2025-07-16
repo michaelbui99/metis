@@ -2,14 +2,20 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 [versions]
 jackson = "2.17.2"
+jackson-yaml = "2.18.1"
+jackson-jsr310 = "2.14.1"
 antlr = "4.5"
 springdoc = "2.8.5"
-spring-logging="3.5.3"
+spring-logging = "3.5.3"
+pf4j = "3.13.0"
 
 [libraries]
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "jackson-yaml" }
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson-jsr310" }
 antlr = { module = "org.antlr:antlr4", version.ref = "antlr" }
 springdoc = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
-spring-logging = {module = "org.springframework.boot:spring-boot-starter-logging", version.ref="spring-logging"}
+spring-logging = { module = "org.springframework.boot:spring-boot-starter-logging", version.ref = "spring-logging" }
+pf4j = { module = "org.pf4j:pf4j", version.ref = "pf4j" }
 
 

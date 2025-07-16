@@ -8,3 +8,5 @@
 rootProject.name = "metis"
 include("metis-server")
 include("metis-core")
+include("metis-plugin")
+include("metis-discord-eventsink")

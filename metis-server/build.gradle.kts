@@ -19,10 +19,17 @@ repositories {
 }
 
 dependencies {
+    // Sub modules
     implementation(project(":metis-core"))
+    implementation(project(":metis-plugin"))
 
+    // Spring
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation(libs.springdoc)
+
+    // Third-party
+    implementation(libs.pf4j)
+    implementation(libs.jackson.dataformat.yaml)
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

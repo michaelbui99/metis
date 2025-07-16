@@ -1,4 +1,4 @@
-package dk.michaelbui.metis.core.domain;
+package dk.michaelbui.metis.plugin.metis.core.domain;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;

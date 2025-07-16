@@ -1,0 +1,7 @@
+event_sinks:
+  metis_eventsink_builtin_discord:
+    params:
+      webhook_url: ""
+      username: "Metis"
+      avatar_url: ""
+      content: "New Metis Events:"

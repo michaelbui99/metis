@@ -1,13 +1,14 @@
 package dk.michaelbui.metis.core.dsl;
 
 import dk.michaelbui.metis.core.domain.condition.*;
-import dk.michaelbui.metis.dsl.*;
 import dk.michaelbui.metis.core.domain.Assignment;
 import dk.michaelbui.metis.core.domain.event.EventTemplate;
 import dk.michaelbui.metis.core.domain.selector.JsonSelector;
 import dk.michaelbui.metis.core.domain.rule.Rule;
 import dk.michaelbui.metis.core.domain.rule.RuleContext;
 import dk.michaelbui.metis.core.domain.rule.RuleName;
+import dk.michaelbui.metis.dsl.MetisDslBaseVisitor;
+import dk.michaelbui.metis.dsl.MetisDslParser;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
