@@ -1,21 +1,13 @@
 package dk.michaelbui.metis.server.api.dto;
 
 public class ReadRuleDto {
-    private String id;
     private String name;
+    // TODO: update when better readable representation is implemented
+    private String condition;
 
-
-    public ReadRuleDto(String id, String name) {
-        this.id = id;
+    public ReadRuleDto(String name, String condition) {
         this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.condition = condition;
     }
 
     public String getName() {
@@ -24,5 +16,13 @@ public class ReadRuleDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 }

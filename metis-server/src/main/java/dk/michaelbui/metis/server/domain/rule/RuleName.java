@@ -1,4 +1,4 @@
-package dk.michaelbui.metis.server.domain;
+package dk.michaelbui.metis.server.domain.rule;
 
 public class RuleName {
     private static final String VALID_RULE_NAME_PATTERN = "^[a-zA-Z_]\\w*$";

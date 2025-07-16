@@ -5,12 +5,15 @@ import dk.michaelbui.metis.server.domain.Assignment;
 import dk.michaelbui.metis.server.domain.condition.*;
 import dk.michaelbui.metis.server.domain.event.EventTemplate;
 import dk.michaelbui.metis.server.domain.selector.JsonSelector;
-import dk.michaelbui.metis.server.domain.Rule;
-import dk.michaelbui.metis.server.domain.RuleContext;
-import dk.michaelbui.metis.server.domain.RuleName;
+import dk.michaelbui.metis.server.domain.rule.Rule;
+import dk.michaelbui.metis.server.domain.rule.RuleContext;
+import dk.michaelbui.metis.server.domain.rule.RuleName;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /***
  * Responsible for converting Metis DSL to a {@link Rule}
@@ -68,7 +71,9 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
         Condition condition = visitCondition(ctx.condition());
         rule.setCondition(condition);
 
-        visit(ctx.action());
+        EventTemplate eventTemplate = visitAction(ctx.action());
+        rule.setEventTemplate(eventTemplate);
+
         return null;
     }
 
@@ -79,7 +84,6 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
 
     @Override
     public Object visitOrExpr(MetisDslParser.OrExprContext ctx) {
-        LOGGER.info("Visiting OR expression");
 
         if (ctx.andExpr().size() == 1) {
             return visit(ctx.andExpr(0));
@@ -109,7 +113,6 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
 
     @Override
     public Object visitNotExpr(MetisDslParser.NotExprContext ctx) {
-        LOGGER.info("Visiting NOT expression");
         if (ctx.NOT() != null) {
             Object inner = visit(ctx.notExpr());
             return new NotCondition(inner);
@@ -177,7 +180,8 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
         }
 
         if (ctx.STRING_LITERAL() != null) {
-            return ctx.STRING_LITERAL().getText();
+            String literalWithQuotes = ctx.STRING_LITERAL().getText();
+            return literalWithQuotes.substring(1, literalWithQuotes.length() - 1);
         }
 
         if (ctx.NUMBER_LITERAL() != null) {
@@ -189,7 +193,40 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
 
     @Override
     public EventTemplate visitAction(MetisDslParser.ActionContext ctx) {
-        LOGGER.info("Visiting action");
-        return null;
+        if (ctx.RAISE() == null){
+            return null;
+        }
+
+        return (EventTemplate) visit(ctx.event());
+    }
+
+    @Override
+    public Object visitEvent(MetisDslParser.EventContext ctx) {
+        EventTemplate eventTemplate = new EventTemplate();
+
+        String name = ctx.IDENTIFIER().getText();
+        eventTemplate.setEventName(name);
+
+        // TODO: add support for bindings / interpolated strings. For now just support selectors in the template.
+        Map<String, JsonSelector> params = (Map<String, JsonSelector>)visit(ctx.params());
+        eventTemplate.setParams(params);
+
+        return eventTemplate;
+    }
+
+    @Override
+    public Map<String, JsonSelector> visitParams(MetisDslParser.ParamsContext ctx) {
+        Map<String, JsonSelector> params = new HashMap<>();
+        for (MetisDslParser.ParamContext param : ctx.param()) {
+            Map.Entry<String, JsonSelector> entry = (Map.Entry<String, JsonSelector>)visit(param);
+            params.put(entry.getKey(), entry.getValue());
+        }
+        return params;
+    }
+
+    @Override
+    public Map.Entry<String, JsonSelector> visitParam(MetisDslParser.ParamContext ctx) {
+        JsonSelector selector = (JsonSelector) visit(ctx.expression());
+        return Map.entry(ctx.IDENTIFIER().getText(), selector);
     }
 }

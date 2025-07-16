@@ -1,4 +1,4 @@
-package dk.michaelbui.metis.server.domain;
+package dk.michaelbui.metis.server.domain.rule;
 
 import dk.michaelbui.metis.server.domain.condition.Condition;
 import dk.michaelbui.metis.server.domain.event.EventTemplate;
@@ -11,7 +11,7 @@ public class Rule {
 
     private Condition condition;
 
-    private EventTemplate event;
+    private EventTemplate eventTemplate;
 
     private RuleContext context;
 
@@ -20,12 +20,12 @@ public class Rule {
         return name;
     }
 
-    public EventTemplate getEvent() {
-        return event;
+    public EventTemplate getEventTemplate() {
+        return eventTemplate;
     }
 
-    public void setEvent(EventTemplate event) {
-        this.event = event;
+    public void setEventTemplate(EventTemplate eventTemplate) {
+        this.eventTemplate = eventTemplate;
     }
 
     public void setName(RuleName name) {
@@ -53,7 +53,7 @@ public class Rule {
         return "Rule{" +
                 "name=" + name +
                 ", condition=" + condition +
-                ", event=" + event +
+                ", event=" + eventTemplate +
                 ", context=" + context +
                 '}';
     }

@@ -10,14 +10,8 @@ public class AndCondition extends Condition {
     }
 
     @Override
-    public boolean evaluate() {
-        return left.evaluate() && right.evaluate();
-    }
-
-    @Override
-    public void setContext(EvaluationContext context) {
-        this.left.setContext(context);
-        this.right.setContext(context);
+    public boolean evaluate(EvaluationContext context) {
+        return left.evaluate(context) && right.evaluate(context);
     }
 
     @Override

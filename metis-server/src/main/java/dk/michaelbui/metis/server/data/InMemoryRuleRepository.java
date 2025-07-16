@@ -1,13 +1,13 @@
 package dk.michaelbui.metis.server.data;
 
-import dk.michaelbui.metis.server.domain.Rule;
-import dk.michaelbui.metis.server.domain.RuleRepository;
+import dk.michaelbui.metis.server.domain.rule.Rule;
+import dk.michaelbui.metis.server.domain.rule.RulesRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 @Repository
-public class InMemoryRuleRepository implements RuleRepository {
+public class InMemoryRuleRepository implements RulesRepository {
     private Map<String, Rule> rules;
 
     public InMemoryRuleRepository() {

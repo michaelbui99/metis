@@ -31,12 +31,39 @@ THEN RAISE mega_discount(
 #### Boolean AND / OR
 ```
 RULE monitor_meat_discount
-WITH (price=$.product.price, name=$.product.name, discount=$.product.discount ) 
 WHEN ($.product.category == "meat" AND ($.product.discount > 0.7 OR $.product.clearance == true) AND !$.product.isExpired)
 THEN RAISE meat_discount_alert(
-    name=$name,
-    discount=$discount,
-    new_price=$price,
-    msg="MEGA DISCOUNT ($discount) ON $name. NEW PRICE: $price"
+    name=$.product.name,
+    discount=$.product.discount,
+    new_price=$.product.price
 )
+```
+In the example above, when you input the following input:
+```json
+{
+  "product": {
+    "category": "meat",
+    "discount": 0.75,
+    "clearance": false,
+    "isExpired": false,
+    "price": 3.99,
+    "name": "Organic Beef Steak"
+  }
+}
+```
+
+The engine will return the following events:
+```json
+[
+  {
+    "id": "034cce5b-286c-4239-b3aa-bdc13381bf0f",
+    "name": "meat_discount_alert",
+    "params": {
+      "name": "Organic Beef Steak",
+      "discount": 0.75,
+      "new_price": 3.99
+    },
+    "timestamp": "2025-07-16T15:14:26.853649+02:00"
+  }
+]
 ```

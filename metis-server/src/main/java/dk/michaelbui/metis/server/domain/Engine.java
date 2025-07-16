@@ -1,12 +1,12 @@
 package dk.michaelbui.metis.server.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import dk.michaelbui.metis.server.domain.event.Event;
 
-public class Engine {
-    private RuleRepository ruleRepository;
+import java.util.List;
 
-    @Autowired
-    public Engine(RuleRepository ruleRepository) {
-        this.ruleRepository = ruleRepository;
-    }
+public interface Engine {
+    /**
+     * Takes a JSON string as input and {@link Event} based on the user defined rules.
+     * */
+    List<Event> input(String jsonString);
 }

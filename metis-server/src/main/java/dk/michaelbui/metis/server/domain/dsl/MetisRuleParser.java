@@ -2,7 +2,7 @@ package dk.michaelbui.metis.server.domain.dsl;
 
 import dk.michaelbui.metis.dsl.MetisDslLexer;
 import dk.michaelbui.metis.dsl.MetisDslParser;
-import dk.michaelbui.metis.server.domain.Rule;
+import dk.michaelbui.metis.server.domain.rule.Rule;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;

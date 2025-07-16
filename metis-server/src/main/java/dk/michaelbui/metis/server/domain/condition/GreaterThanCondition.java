@@ -31,8 +31,8 @@ public class GreaterThanCondition extends Condition {
     }
 
     @Override
-    public boolean evaluate() {
-        JsonNode input = getContext().getInput();
+    public boolean evaluate(EvaluationContext context) {
+        JsonNode input = context.getInput();
         if (input == null || input.isNull()) {
             return false;
         }

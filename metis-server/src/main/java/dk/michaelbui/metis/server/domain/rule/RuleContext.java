@@ -1,4 +1,4 @@
-package dk.michaelbui.metis.server.domain;
+package dk.michaelbui.metis.server.domain.rule;
 
 import dk.michaelbui.metis.server.domain.selector.JsonSelector;
 

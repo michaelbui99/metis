@@ -1,9 +1,9 @@
-package dk.michaelbui.metis.server.domain;
+package dk.michaelbui.metis.server.domain.rule;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface RuleRepository {
+public interface RulesRepository {
     Optional<Rule> getRule(String name);
     List<Rule> getRules();
     void addRule(Rule rule);

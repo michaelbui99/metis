@@ -10,12 +10,12 @@ public class NotCondition extends Condition{
     }
 
     @Override
-    public boolean evaluate() {
+    public boolean evaluate(EvaluationContext context) {
         if (inner instanceof Condition condition) {
-            return !condition.evaluate();
+            return !condition.evaluate(context);
         }
         if (inner instanceof JsonSelector selector) {
-            Object value = selector.apply(getContext().getInput());
+            Object value = selector.apply(context.getInput());
             if (!(value instanceof Boolean)) {
                 return false;
             }
