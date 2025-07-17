@@ -116,6 +116,14 @@ public class JsonSelector implements ParamValue {
         }
     }
 
+    public String getSelector() {
+        return selector;
+    }
+
+    public void setSelector(String selector) {
+        this.selector = selector;
+    }
+
     @Override
     public String toString() {
         return "JsonSelector{" +

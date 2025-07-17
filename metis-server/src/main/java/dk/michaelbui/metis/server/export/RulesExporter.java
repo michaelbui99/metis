@@ -1,8 +1,10 @@
 package dk.michaelbui.metis.server.export;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.michaelbui.metis.core.domain.rule.Rule;
+import dk.michaelbui.metis.core.serialization.MetisSerializationModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,8 @@ public class RulesExporter {
 
     public RulesExporter() {
         this.mapper = new ObjectMapper();
-        mapper.findAndRegisterModules();
+         Module serialization = new MetisSerializationModule().getModule();
+        mapper.registerModule(serialization);
     }
 
     public byte[] export(List<Rule> rules) {

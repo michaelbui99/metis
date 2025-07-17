@@ -19,6 +19,14 @@ public class RuleName {
         return name.matches(VALID_RULE_NAME_PATTERN);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "RuleName{" +

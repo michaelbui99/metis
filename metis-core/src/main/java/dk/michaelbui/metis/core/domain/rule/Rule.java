@@ -1,5 +1,6 @@
 package dk.michaelbui.metis.core.domain.rule;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import dk.michaelbui.metis.core.domain.condition.Condition;
 import dk.michaelbui.metis.core.domain.event.EventTemplate;
 
@@ -46,6 +47,11 @@ public class Rule {
 
     public void setCondition(Condition condition) {
         this.condition = condition;
+    }
+
+    @JsonGetter("name")
+    public String serializeName(){
+        return name.value();
     }
 
     @Override

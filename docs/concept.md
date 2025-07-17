@@ -10,7 +10,7 @@
 #### Raise event on condition
 ```
 RULE cheap_meat
-WHEN ($.product.discount > 0.5 AND $.product.category="meat" AND $.product.is_expired=false)
+WHEN ($.product.discount > 0.5 AND $.product.category == "meat" AND $.product.is_expired == false)
  THEN RAISE buy_product( msg="it's so cheap" )
 ```
 In the example above, we raise the event `buy_product` with a single parameter `msg` with the value of `it's so cheap`.

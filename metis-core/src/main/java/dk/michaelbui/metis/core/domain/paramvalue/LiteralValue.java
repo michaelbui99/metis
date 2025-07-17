@@ -14,6 +14,14 @@ public class LiteralValue implements ParamValue {
         this.value = value;
     }
 
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
     @Override
     public Object apply(JsonNode input) {
         return value;
