@@ -15,11 +15,11 @@ WHEN ($.product.discount > 0.5 AND $.product.category="meat" AND $.product.is_ex
 ```
 In the example above, we raise the event `buy_product` with a single parameter `msg` with the value of `it's so cheap`.
 
-#### Using data from the input as params in the event
+#### Alias JSON values using bindings
 ```
 RULE mega_discount_on_70_percent
 WITH (price=$.product.price, name=$.product.name, discount=$.product.discount ) 
-WHEN ($.product.discount > 0.7)
+WHEN ($discount > 0.7)
 THEN RAISE mega_discount(
     name=$name,
     discount=$discount,
@@ -27,6 +27,9 @@ THEN RAISE mega_discount(
     msg="MEGA DISCOUNT (${discount}) ON ${name}. NEW PRICE: ${price}"
 )
 ```
+In the example above we create bindings (aliases) in the `WITH` clause. The bindings can be used in the conditions (`WHEN` clause)
+and as the value (right side) in the event params.
+
 #### Boolean AND / OR
 ```
 RULE monitor_meat_discount

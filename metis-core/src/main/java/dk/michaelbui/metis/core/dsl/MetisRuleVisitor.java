@@ -134,27 +134,27 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
         // TODO: Error handling in case types are not matching
         return switch (operator) {
             case ">" -> {
-                JsonSelector selector = (JsonSelector) visit(ctx.expression().get(0));
+                JsonSelector selector = resolveSelector(visit(ctx.expression().get(0)));
                 Object operand = visit(ctx.expression().get(1));
                 yield new GreaterThanCondition(selector, (Number) operand, false);
             }
             case ">=" -> {
-                JsonSelector selector = (JsonSelector) visit(ctx.expression().get(0));
+                JsonSelector selector = resolveSelector(visit(ctx.expression().get(0)));
                 Object operand = visit(ctx.expression().get(1));
                 yield new GreaterThanCondition(selector, (Number) operand, true);
             }
             case "<" -> {
-                JsonSelector selector = (JsonSelector) visit(ctx.expression().get(0));
+                JsonSelector selector = resolveSelector(visit(ctx.expression().get(0)));
                 Object operand = visit(ctx.expression().get(1));
                 yield new LessThanCondition(selector, (Number) operand, false);
             }
             case "<=" -> {
-                JsonSelector selector = (JsonSelector) visit(ctx.expression().get(0));
+                JsonSelector selector = resolveSelector(visit(ctx.expression().get(0)));
                 Object operand = visit(ctx.expression().get(1));
                 yield new LessThanCondition(selector, (Number) operand, true);
             }
             case "==" -> {
-                JsonSelector selector = (JsonSelector) visit(ctx.expression().get(0));
+                JsonSelector selector = resolveSelector(visit(ctx.expression().get(0)));
                 Object operand = visit(ctx.expression().get(1));
                 yield new EqualsCondition(selector, operand);
             }
@@ -243,5 +243,13 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
     public Map.Entry<String, ParamValue> visitParam(MetisDslParser.ParamContext ctx) {
         ParamValue selector = ParamValueUtil.of(visit(ctx.expression()));
         return Map.entry(ctx.IDENTIFIER().getText(), selector);
+    }
+
+    private JsonSelector resolveSelector(Object object){
+        return switch (object){
+            case JsonSelector js -> js;
+            case BindingValue bv -> bv.getSelector();
+            default -> throw new ParseException("Failed to resolve selector.");
+        };
     }
 }
