@@ -158,6 +158,11 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
                 Object operand = visit(ctx.expression().get(1));
                 yield new EqualsCondition(selector, operand);
             }
+            case "!=" -> {
+                JsonSelector selector = resolveSelector(visit(ctx.expression().get(0)));
+                Object operand = visit(ctx.expression().get(1));
+                yield new NotEqualsCondition(selector, operand);
+            }
             case "=" -> {
                 String left = (String) visit(ctx.expression().get(0));
                 String right = (String) visit(ctx.expression().get(1));
