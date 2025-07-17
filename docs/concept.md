@@ -3,6 +3,7 @@
 - The engine takes JSON as input and evaluates the JSON input against a set of rules that each consists of a set of conditions.
 - Each rule will have a event that it raises in case all the rule's condition's are evaluated to true.
 
+![Concept Diagram](metis_concept.png)
 
 ## Rules syntax
 
