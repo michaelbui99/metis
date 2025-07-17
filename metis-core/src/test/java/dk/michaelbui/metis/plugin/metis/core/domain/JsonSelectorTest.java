@@ -3,7 +3,7 @@ package dk.michaelbui.metis.plugin.metis.core.domain;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.michaelbui.metis.core.domain.selector.JsonSelector;
+import dk.michaelbui.metis.core.domain.paramvalue.selector.JsonSelector;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 

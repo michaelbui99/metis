@@ -96,8 +96,12 @@ param
 expression
     : literal
     | jsonSelector
-    | '$' IDENTIFIER
+    | bindingReference
     | interpolatedString
+    ;
+
+bindingReference
+    : '$' IDENTIFIER
     ;
 
 literal

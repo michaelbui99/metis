@@ -1,7 +1,7 @@
 package dk.michaelbui.metis.core.domain.condition;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import dk.michaelbui.metis.core.domain.selector.JsonSelector;
+import dk.michaelbui.metis.core.domain.paramvalue.selector.JsonSelector;
 
 import java.util.Objects;
 

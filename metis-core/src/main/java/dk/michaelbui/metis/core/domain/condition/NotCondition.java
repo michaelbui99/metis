@@ -1,6 +1,6 @@
 package dk.michaelbui.metis.core.domain.condition;
 
-import dk.michaelbui.metis.core.domain.selector.JsonSelector;
+import dk.michaelbui.metis.core.domain.paramvalue.selector.JsonSelector;
 
 public class NotCondition extends Condition{
     private final Object inner;

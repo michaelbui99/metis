@@ -1,7 +1,6 @@
 package dk.michaelbui.metis.core.domain.event;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import dk.michaelbui.metis.core.domain.selector.JsonSelector;
 
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -11,7 +10,7 @@ import java.util.stream.Collectors;
 public class MetisEventsService implements EventsService {
     @Override
     public Event eventFromTemplate(EventTemplate template, JsonNode input) {
-        Map<String, JsonSelector> paramTemplate = template.getParams();
+        Map<String, ParamValue> paramTemplate = template.getParams();
         Map<String, Object> params = paramTemplate.entrySet().stream()
                 .collect(
                         Collectors.toMap(

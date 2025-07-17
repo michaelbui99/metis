@@ -1,6 +1,6 @@
 package dk.michaelbui.metis.core.domain.rule;
 
-import dk.michaelbui.metis.core.domain.selector.JsonSelector;
+import dk.michaelbui.metis.core.domain.paramvalue.selector.JsonSelector;
 
 import java.util.HashMap;
 import java.util.Map;

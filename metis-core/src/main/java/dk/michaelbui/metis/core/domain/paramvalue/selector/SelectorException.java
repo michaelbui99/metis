@@ -1,4 +1,4 @@
-package dk.michaelbui.metis.core.domain.selector;
+package dk.michaelbui.metis.core.domain.paramvalue.selector;
 
 import dk.michaelbui.metis.core.domain.DomainException;
 

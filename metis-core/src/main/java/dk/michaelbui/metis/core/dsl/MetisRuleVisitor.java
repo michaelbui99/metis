@@ -1,9 +1,12 @@
 package dk.michaelbui.metis.core.dsl;
 
+import dk.michaelbui.metis.core.domain.paramvalue.BindingValue;
+import dk.michaelbui.metis.core.domain.paramvalue.ParamValueUtil;
 import dk.michaelbui.metis.core.domain.condition.*;
 import dk.michaelbui.metis.core.domain.Assignment;
 import dk.michaelbui.metis.core.domain.event.EventTemplate;
-import dk.michaelbui.metis.core.domain.selector.JsonSelector;
+import dk.michaelbui.metis.core.domain.event.ParamValue;
+import dk.michaelbui.metis.core.domain.paramvalue.selector.JsonSelector;
 import dk.michaelbui.metis.core.domain.rule.Rule;
 import dk.michaelbui.metis.core.domain.rule.RuleContext;
 import dk.michaelbui.metis.core.domain.rule.RuleName;
@@ -47,7 +50,6 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
         return null;
     }
 
-    // NOTE: Skip support for bindings for now to get MVP up and running.
     @Override
     public Rule visitWithClause(MetisDslParser.WithClauseContext ctx) {
         rule.setContext(new RuleContext());
@@ -80,7 +82,7 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
 
     @Override
     public Condition visitCondition(MetisDslParser.ConditionContext ctx) {
-        return (Condition)visit(ctx.orExpr());
+        return (Condition) visit(ctx.orExpr());
     }
 
     @Override
@@ -193,11 +195,24 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
     }
 
     @Override
+    public BindingValue visitBindingReference(MetisDslParser.BindingReferenceContext ctx) {
+        Map<String, JsonSelector> bindings = rule.getContext().getBindings();
+        String key = ctx.IDENTIFIER().getText();
+        JsonSelector selector;
+        if (!bindings.containsKey(key)) {
+            LOGGER.warn("Binding reference to '${}' could not be resolved. Defaulting to null value", key);
+            selector = null;
+        }else{
+            selector = bindings.get(key);
+        }
+        return new BindingValue(key, selector);
+    }
+
+    @Override
     public EventTemplate visitAction(MetisDslParser.ActionContext ctx) {
-        if (ctx.RAISE() == null){
+        if (ctx.RAISE() == null) {
             return null;
         }
-
         return (EventTemplate) visit(ctx.event());
     }
 
@@ -208,26 +223,25 @@ public class MetisRuleVisitor extends MetisDslBaseVisitor<Object> {
         String name = ctx.IDENTIFIER().getText();
         eventTemplate.setEventName(name);
 
-        // TODO: add support for bindings / interpolated strings. For now just support selectors in the template.
-        Map<String, JsonSelector> params = (Map<String, JsonSelector>)visit(ctx.params());
+        Map<String, ParamValue> params = (Map<String, ParamValue>) visit(ctx.params());
         eventTemplate.setParams(params);
 
         return eventTemplate;
     }
 
     @Override
-    public Map<String, JsonSelector> visitParams(MetisDslParser.ParamsContext ctx) {
-        Map<String, JsonSelector> params = new HashMap<>();
+    public Map<String, ParamValue> visitParams(MetisDslParser.ParamsContext ctx) {
+        Map<String, ParamValue> params = new HashMap<>();
         for (MetisDslParser.ParamContext param : ctx.param()) {
-            Map.Entry<String, JsonSelector> entry = (Map.Entry<String, JsonSelector>)visit(param);
+            Map.Entry<String, ParamValue> entry = (Map.Entry<String, ParamValue>) visit(param);
             params.put(entry.getKey(), entry.getValue());
         }
         return params;
     }
 
     @Override
-    public Map.Entry<String, JsonSelector> visitParam(MetisDslParser.ParamContext ctx) {
-        JsonSelector selector = (JsonSelector) visit(ctx.expression());
+    public Map.Entry<String, ParamValue> visitParam(MetisDslParser.ParamContext ctx) {
+        ParamValue selector = ParamValueUtil.of(visit(ctx.expression()));
         return Map.entry(ctx.IDENTIFIER().getText(), selector);
     }
 }

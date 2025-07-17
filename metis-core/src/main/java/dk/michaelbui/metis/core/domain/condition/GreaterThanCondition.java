@@ -1,7 +1,7 @@
 package dk.michaelbui.metis.core.domain.condition;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import dk.michaelbui.metis.core.domain.selector.JsonSelector;
+import dk.michaelbui.metis.core.domain.paramvalue.selector.JsonSelector;
 
 /**
  * <p>Represents a greater than (or equal to) condition such as 5 > 2 or 5>=2</p>

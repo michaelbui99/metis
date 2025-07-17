@@ -1,12 +1,10 @@
 package dk.michaelbui.metis.core.domain.event;
 
-import dk.michaelbui.metis.core.domain.selector.JsonSelector;
-
 import java.util.Map;
 
 public class EventTemplate {
     private String eventName;
-    private Map<String, JsonSelector> params;
+    private Map<String, ParamValue> params;
 
     public String getEventName() {
         return eventName;
@@ -16,11 +14,11 @@ public class EventTemplate {
         this.eventName = eventName;
     }
 
-    public Map<String, JsonSelector> getParams() {
+    public Map<String, ParamValue> getParams() {
         return params;
     }
 
-    public void setParams(Map<String, JsonSelector> params) {
+    public void setParams(Map<String, ParamValue> params) {
         this.params = params;
     }
 }

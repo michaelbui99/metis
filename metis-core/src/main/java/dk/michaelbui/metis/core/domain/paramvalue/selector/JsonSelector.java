@@ -1,12 +1,13 @@
-package dk.michaelbui.metis.core.domain.selector;
+package dk.michaelbui.metis.core.domain.paramvalue.selector;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import dk.michaelbui.metis.core.domain.event.ParamValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
-public class JsonSelector {
+public class JsonSelector implements ParamValue {
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonSelector.class);
     private static final String VALID_SELECTOR_PATTERN = "^\\$(\\.[a-zA-Z_]\\w*|\\[\\d+\\])*$";
     private static final String ROOT_SYMBOL = "$";

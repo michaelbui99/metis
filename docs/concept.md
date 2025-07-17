@@ -24,7 +24,7 @@ THEN RAISE mega_discount(
     name=$name,
     discount=$discount,
     new_price=$price,
-    msg="MEGA DISCOUNT ($discount) ON $name. NEW PRICE: $price"
+    msg="MEGA DISCOUNT (${discount}) ON ${name}. NEW PRICE: ${price}"
 )
 ```
 #### Boolean AND / OR
