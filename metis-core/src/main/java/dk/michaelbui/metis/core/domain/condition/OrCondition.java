@@ -14,6 +14,22 @@ public class OrCondition extends Condition {
         return left.evaluate(context) || right.evaluate(context);
     }
 
+    public Condition getLeft() {
+        return left;
+    }
+
+    public void setLeft(Condition left) {
+        this.left = left;
+    }
+
+    public Condition getRight() {
+        return right;
+    }
+
+    public void setRight(Condition right) {
+        this.right = right;
+    }
+
     @Override
     public String toString() {
         return "OrCondition{" +

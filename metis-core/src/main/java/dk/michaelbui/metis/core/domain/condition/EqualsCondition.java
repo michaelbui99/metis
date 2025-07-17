@@ -13,12 +13,16 @@ public class EqualsCondition extends Condition {
     /**
      * Used to select the left operand
      */
-    private final JsonSelector selector;
+    private JsonSelector selector;
 
     /**
      * Right operand
      */
-    private final Object rightOperand;
+    private Object rightOperand;
+
+    public EqualsCondition() {
+        // For marshalling / unmarshalling
+    }
 
     public EqualsCondition(JsonSelector selector, Object rightOperand) {
         this.selector = selector;
@@ -43,6 +47,22 @@ public class EqualsCondition extends Condition {
             return bool == rightOperand;
         }
         return false;
+    }
+
+    public JsonSelector getSelector() {
+        return selector;
+    }
+
+    public void setSelector(JsonSelector selector) {
+        this.selector = selector;
+    }
+
+    public Object getRightOperand() {
+        return rightOperand;
+    }
+
+    public void setRightOperand(Object rightOperand) {
+        this.rightOperand = rightOperand;
     }
 
     @Override

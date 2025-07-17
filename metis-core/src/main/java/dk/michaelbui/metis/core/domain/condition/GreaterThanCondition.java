@@ -24,6 +24,10 @@ public class GreaterThanCondition extends Condition {
      * */
     private boolean allowEquals;
 
+    public GreaterThanCondition() {
+        // For marshalling / unmarshalling
+    }
+
     public GreaterThanCondition(JsonSelector selector, Number rightOperand, boolean allowEquals) {
         this.selector = selector;
         this.rightOperand = rightOperand;
@@ -57,6 +61,31 @@ public class GreaterThanCondition extends Condition {
                 return false;
             }
         }
+    }
+
+
+    public JsonSelector getSelector() {
+        return selector;
+    }
+
+    public void setSelector(JsonSelector selector) {
+        this.selector = selector;
+    }
+
+    public Number getRightOperand() {
+        return rightOperand;
+    }
+
+    public void setRightOperand(Number rightOperand) {
+        this.rightOperand = rightOperand;
+    }
+
+    public boolean isAllowEquals() {
+        return allowEquals;
+    }
+
+    public void setAllowEquals(boolean allowEquals) {
+        this.allowEquals = allowEquals;
     }
 
     @Override

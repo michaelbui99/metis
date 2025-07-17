@@ -3,7 +3,11 @@ package dk.michaelbui.metis.core.domain.condition;
 import dk.michaelbui.metis.core.domain.paramvalue.selector.JsonSelector;
 
 public class NotCondition extends Condition{
-    private final Object inner;
+    private Object inner;
+
+    public NotCondition() {
+        // For marshalling / unmarshalling
+    }
 
     public NotCondition(Object inner) {
         this.inner = inner;
@@ -22,6 +26,14 @@ public class NotCondition extends Condition{
             return !((Boolean) value);
         }
         return false;
+    }
+
+    public Object getInner() {
+        return inner;
+    }
+
+    public void setInner(Object inner) {
+        this.inner = inner;
     }
 
     @Override

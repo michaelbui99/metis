@@ -11,18 +11,22 @@ public class LessThanCondition extends Condition {
     /**
      * Used to select the left operand
      * */
-    private final JsonSelector selector;
+    private JsonSelector selector;
 
     /**
      * Right operand
      * */
 
-    private final Number rightOperand;
+    private Number rightOperand;
 
     /**
      * Modifies whether it is a < condition (when false) or <= condition (when true)
      * */
-    private final boolean allowEquals;
+    private boolean allowEquals;
+
+    public LessThanCondition() {
+        // For marshalling / unmarshalling
+    }
 
     public LessThanCondition(JsonSelector selector, Number rightOperand, boolean allowEquals) {
         this.selector = selector;
@@ -57,6 +61,30 @@ public class LessThanCondition extends Condition {
                 return false;
             }
         }
+    }
+
+    public JsonSelector getSelector() {
+        return selector;
+    }
+
+    public void setSelector(JsonSelector selector) {
+        this.selector = selector;
+    }
+
+    public Number getRightOperand() {
+        return rightOperand;
+    }
+
+    public void setRightOperand(Number rightOperand) {
+        this.rightOperand = rightOperand;
+    }
+
+    public boolean isAllowEquals() {
+        return allowEquals;
+    }
+
+    public void setAllowEquals(boolean allowEquals) {
+        this.allowEquals = allowEquals;
     }
 
     @Override
