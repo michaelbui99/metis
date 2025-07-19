@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,8 +36,9 @@ public class MetisPluginManager {
             LOGGER.info("Reading plugins configuration from {}", pluginConfigFile);
             this.pluginsConfiguration = mapper.readValue(pluginConfigFile.toFile(), MetisPluginsConfiguration.class);
         } catch (IOException e) {
-            LOGGER.error("Failed to read plugins configuration from {}", pluginConfigFile, e);
-            throw new RuntimeException(e);
+            LOGGER.error("Failed to read plugins configuration from {}. Defaulting to empty configuration", pluginConfigFile, e);
+            this.pluginsConfiguration = new MetisPluginsConfiguration();
+            this.pluginsConfiguration.setEventSinks(new HashMap<>());
         }
     }
 
